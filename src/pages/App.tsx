@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { useNameGeneratorContext } from './components/layouts/NameGeneratorContext'
+import { useNameGeneratorContext } from '../components/layouts/NameGeneratorContext'
+import config from '../config'
 
 function App() {
   const {
@@ -8,6 +9,7 @@ function App() {
   const [name,setName] = useState('')
   return (
     <div className="">
+      {config.NAME}
       {name}
       <button onClick={()=>{setName(generateName())}}>generate</button>
     </div>
