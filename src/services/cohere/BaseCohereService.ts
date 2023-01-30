@@ -15,7 +15,7 @@ export interface GenerateBody {
   end_sequences?: string[];
   stop_sequences?: string[];
   return_likelihoods?: string;
-  logit_bias:Record<string,number>;
+  logit_bias?:Record<string,number>;
   truncate?: string
 }
 
