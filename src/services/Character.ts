@@ -1,4 +1,4 @@
-export class CharacterService{
+export class Character{
   public level: number
   public name: string
   public g: number
@@ -82,5 +82,32 @@ export class CharacterService{
   public getAtkBoostFromAtk(){
     const pcent = 30*(Math.log(this.atk+1)/Math.log(3))
     return 1+pcent/100
+  }
+
+  public static FromJSON(json:any){
+    const c = new Character(json.level,json.name,json.g)
+    c.xp = json.xp
+    c.nextLevelXp = json.nextLevelXp
+    c.maxLevel = json.maxLevel
+    c.maxHP = json.maxHP
+    c.currentHP = json.currentHP
+    c.def = json.def
+    c.atk = json.atk
+    return c
+  }
+
+  public static ToJSON(c:Character){
+    return {
+      level: c.level,
+      name: c.name,
+      g: c.g,
+      xp: c.xp,
+      nextLevelXp: c.nextLevelXp,
+      maxLevel: c.maxLevel,
+      maxHP: c.maxHP,
+      currentHP: c.currentHP,
+      def: c.def,
+      atk: c.atk
+    }
   }
 }
