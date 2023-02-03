@@ -110,4 +110,4 @@ export class Character{
       atk: c.atk
     }
   }
-}
+} 

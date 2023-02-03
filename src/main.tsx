@@ -1,22 +1,32 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './pages/App'
+import AppLayout from './pages/AppLayout'
 import './index.css'
 import {
   createBrowserRouter,
   RouterProvider
 } from 'react-router-dom'
-import { NameGenerationService } from './services/NameGenerationService'
-import random from 'random'
 import { NameGeneratorContextProvider } from './components/layouts/NameGeneratorContext'
+import { CharacterPage } from './pages/CharacterPage'
+import { InitPage } from './pages/InitPage'
 
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: <AppLayout />,
     errorElement: <div>404</div>,
-  }
+    children: [
+      {
+        path: '/init',
+        element: <InitPage/>
+      },
+      {
+        path: '/character',
+        element: <CharacterPage/>
+      }
+    ]
+  },
 ])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
