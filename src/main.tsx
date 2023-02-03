@@ -12,13 +12,14 @@ import { InitPage } from './pages/InitPage'
 import { RedirectionPage } from './pages/RedirectionPage'
 import { GameSelectionPage } from './pages/GameSelectionPage'
 import { GamePage } from './pages/GamePage'
+import { ErrorPage } from './pages/ErrorPage'
 
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <AppLayout />,
-    errorElement: <div>404</div>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: '/',

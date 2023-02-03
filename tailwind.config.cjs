@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        cubano: ['Cubano', 'cursive']
+        cubano: ['Cubano', 'cursive'],
+        poppins: ['Poppins', 'sans-serif']
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))'

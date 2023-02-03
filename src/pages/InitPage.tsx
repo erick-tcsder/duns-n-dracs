@@ -5,7 +5,7 @@ export const InitPage : React.FC = ()=>{
   const characterRef = useRef(JSON.parse(window.localStorage.getItem('character') ?? 'null'))
   const navigate = useNavigate()
 
-  return <div className="flex flex-row justify-center h-full">
+  return <div className="grid place-content-center h-full">
     <div className="max-w-xl h-full w-full flex flex-col gap-y-5 py-12">
       <button onClick={()=>{
         navigate('/character')
