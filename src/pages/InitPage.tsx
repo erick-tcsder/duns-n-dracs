@@ -10,7 +10,9 @@ export const InitPage : React.FC = ()=>{
       <button onClick={()=>{
         navigate('/character')
       }} className="px-6 py-4 rounded-md ring-offset-4 ring-offset-gray-900 bg-red-500 text-white hover:ring-4 hover:ring-red-500 font-cubano text-2xl">NEW GAME</button>
-      <button disabled={!Boolean(characterRef.current)} className="px-6 py-4 rounded-md ring-offset-4 ring-offset-gray-900 bg-yellow-400 text-white hover:ring-4 hover:ring-yellow-400 font-cubano text-2xl disabled:opacity-50 disabled:hover:ring-0">CONTINUE</button>
+      <button onClick={()=>{
+        navigate('/game-selection')
+      }} disabled={!Boolean(characterRef.current)} className="px-6 py-4 rounded-md ring-offset-4 ring-offset-gray-900 bg-yellow-400 text-white hover:ring-4 hover:ring-yellow-400 font-cubano text-2xl disabled:opacity-50 disabled:hover:ring-0">CONTINUE</button>
     </div>
   </div>
 }
