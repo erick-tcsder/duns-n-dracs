@@ -9,6 +9,7 @@ export class Character{
   public currentHP: number
   public def: number = 0
   public atk: number = 0
+  public gender: "MALE"|"FEMALE" = 'MALE'
 
   constructor(level: number, name: string, initG: number){
     this.level = level
@@ -85,14 +86,15 @@ export class Character{
   }
 
   public static FromJSON(json:any){
-    const c = new Character(json.level,json.name,json.g)
-    c.xp = json.xp
-    c.nextLevelXp = json.nextLevelXp
-    c.maxLevel = json.maxLevel
-    c.maxHP = json.maxHP
-    c.currentHP = json.currentHP
-    c.def = json.def
-    c.atk = json.atk
+    const c = new Character(json.level ?? 0,json.name ?? 'John Doe',json.g ?? 0)
+    c.xp = json.xp ?? 0
+    c.nextLevelXp = json.nextLevelXp ?? 100
+    c.maxLevel = json.maxLevel ?? 99
+    c.maxHP = json.maxHP ?? 100
+    c.currentHP = json.currentHP ?? 100
+    c.def = json.def ?? 0
+    c.atk = json.atk ?? 0
+    c.gender = json.gender ?? 'MALE'
     return c
   }
 
@@ -107,7 +109,8 @@ export class Character{
       maxHP: c.maxHP,
       currentHP: c.currentHP,
       def: c.def,
-      atk: c.atk
+      atk: c.atk,
+      gender: c.gender
     }
   }
 } 
