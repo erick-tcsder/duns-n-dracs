@@ -1,7 +1,32 @@
 [
-  "Magic Forest",
-  "Dusty Desert",
-  "Hill of the Winds",
-  "The Badlands",
-  "Void Citadel"
+  {
+    "name": "Magic Forest",
+    "description": "A forest of magic trees, awesome creatures and ...",
+    "image": "magic-forest",
+    "levels": [0,19]
+  },
+  {
+    "name": "Dusty Desert",
+    "description": "A mysterious desert full of secrets. Somthing is watching you...",
+    "image": "dusty-desert",
+    "levels": [20,39]
+  },
+  {
+    "name": "Hill of the Winds",
+    "description": "A Hill full of dragon nests, and their aggressive mothers. What was that???",
+    "image": "hill-of-the-winds",
+    "levels": [40,59]
+  },
+  {
+    "name": "The Badlands",
+    "description": "A wasted land populated by agressive creatures once considered humans. Did you hear that???",
+    "image": "the-badlands",
+    "levels": [60,79]
+  },
+  {
+    "name": "Void Citadel",
+    "description": "There's definatly something wrong with this place. Can you feel it???",
+    "image": "void-citadel",
+    "levels": [80,99]
+  }
 ]
