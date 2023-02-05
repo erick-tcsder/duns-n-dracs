@@ -22,7 +22,7 @@ export const GameSelectionPage : React.FC = ()=>{
     </header>
     <div className="grid grid-cols-5 fixed top-32 inset-12 bottom-24 gap-12">
       {(biomes as biomeJSON[]).map((biome)=>(
-        <StageCard {...biome} stage={biome.name} onClick={()=>{}} unlocked/>
+        <StageCard {...biome} stage={biome.name} locked={biome.name[0] === 'V'} onClick={()=>{}}/>
       ))}
     </div>
   </div>

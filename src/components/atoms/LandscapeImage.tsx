@@ -48,20 +48,24 @@ export interface LandscapeImageProps {
   classname?: string;
   portrait?: boolean;
   backBlured?: boolean;
+  locked?: boolean
 }
 
 export const LandscapeImage : React.FC<LandscapeImageProps> = (props)=>{
   return (
     <div className={props.classname ?? '' +'relative'}>
-      {props.backBlured && (
+      {props.backBlured && !props.locked && (
         <img src={(props.portrait ? urlMappedPortrait : urlMapped)[props.stage] ?? ''} alt={props.stage} className="absolute inset-0 -bottom-24 top-24 blur-3xl object-cover"/>
       )}
       <img src={(props.portrait ? urlMappedPortrait : urlMapped)[props.stage] ?? ''} alt={props.stage} className="relative object-cover"/>
+      {props.locked && (
+        <div className='absolute inset-0 bg-gray-600 bottom-8'/>
+      )}
       <div className='relative inset-x-0 flex justify-center -mt-8'>
         <div className='relative'>
-          <div className={classNames('aspect-square p-5 rounded-full relative grid place-content-center text-2xl',stageColor[props.stage])}>
-            <span className={classNames('absolute -inset-3 animate-pulse rounded-full blur-xl',stageColor[props.stage])}/>
-            <i className={classNames('relative',stageIcon[props.stage])}/>
+          <div className={classNames('aspect-square p-5 rounded-full relative grid place-content-center text-2xl',props.locked ? 'bg-gray-700' : stageColor[props.stage])}>
+            <span className={classNames('absolute -inset-3 animate-pulse rounded-full blur-xl',!props.locked ? stageColor[props.stage] : 'bg-gray-700')}/>
+            <i className={classNames('relative bg-gra',!props.locked ? stageIcon[props.stage] : 'fas fa-lock')}/>
           </div>
         </div>
       </div>
