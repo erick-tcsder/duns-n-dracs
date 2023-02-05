@@ -105,6 +105,7 @@ export class Game {
     const diceResult = this.throwDice();
 
     if (room.roomType === RoomType.HOSTILE || room.roomType === RoomType.BOSS) {
+      let win = false
       const levelFactor = ((character.level*character.getAtkBoostFromAtk() - (room?.roomLevel ?? 0)) / 3);
       const drComprehension = classNames({
         "easily wins": diceResult >= 15 - levelFactor,
@@ -132,11 +133,15 @@ export class Game {
       );
       if(!dead){
         character.m_xp(diceResult * 4)
+        if(room.roomType === RoomType.BOSS){
+          win = true
+        }
       }
       return {
         diceResult,
         endStory: room?.endingStory,
         dead,
+        win
       };
     } else if (room.roomType === RoomType.EMPTY) {
       room.endingStory =
@@ -146,6 +151,7 @@ export class Game {
         diceResult,
         endStory: room?.endingStory,
         dead: false,
+        win: false
       };
     } else if (room.roomType === RoomType.TREASURE) {
       room.endingStory =
@@ -155,6 +161,7 @@ export class Game {
         diceResult,
         endStory: room?.endingStory,
         dead: false,
+        win: false
       };
     } else if (room.roomType === RoomType.NPC) {
       const actions = [
@@ -200,6 +207,7 @@ export class Game {
         diceResult,
         endStory: room?.endingStory,
         dead: false,
+        win: false
       }
     }else {
       throw new Error("Room type not found")
