@@ -38,7 +38,7 @@ Story:
     return generations[0].text;
   }
 
-  static async generateStoryEnding(historyStart:string, diceResult: number,character:string){
+  static async generateStoryEnding(historyStart:string, diceResult: string,character:string){
     const { generations } = await BaseCohereService.generate({
       prompt: `Write the end of the following story where ${character} ${diceResult}.
 ${historyStart}`,

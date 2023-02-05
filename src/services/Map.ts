@@ -7,7 +7,7 @@ export type Coordinate = {
   y: number
 }
 
-enum RoomType{
+export enum RoomType{
   EMPTY,
   HOSTILE,
   NPC,
@@ -46,7 +46,6 @@ export class MapRoom{
       default:
         throw new Error('No valid room type')
     }
-    return this.startingStory
   }
 
   static getCardFromRoomType(rt:RoomType){
@@ -63,13 +62,32 @@ export class MapRoom{
         return 'treasure'
     }
   }
+
+  public static fromJSON(json:any){
+    const room = new MapRoom(json.roomType,json.roomLevel,json.biome)
+    room.visited = json.visited ?? false
+    room.startingStory = json.startingStory ?? ''
+    room.endingStory = json.endingStory ?? ''
+    return room
+  }
+
+  public toJSON(){
+    return {
+      visited: this.visited,
+      startingStory: this.startingStory,
+      endingStory: this.endingStory,
+      roomType: this.roomType,
+      roomLevel: this.roomLevel,
+      biome: this.biome
+    }
+  }
 }
 
 export class Map{
-  public rooms: (MapRoom | null)[][]
-  public mapName: string
-  public startingRoom: Coordinate
-  public biome:string
+  public rooms: (MapRoom | null)[][] = []
+  public mapName: string = ''
+  public startingRoom: Coordinate = {x:0,y:0}
+  public biome:string = ''
   constructor(name:string, biome:string, x:number, y:number, dificulty: (x:number,y:number)=>{
     minLevel: number;
     maxLevel: number;
@@ -124,5 +142,22 @@ export class Map{
         }
       })
     })
+  }
+
+  public toJSON(){
+    return {
+      rooms: this.rooms.map(row=>row.map(room=>room?.toJSON())),
+      mapName: this.mapName,
+      startingRoom: this.startingRoom,
+      biome: this.biome
+    }
+  }
+
+  public static fromJSON(json:any){
+    const map = new Map(json.mapName,json.biome,json.rooms.length,json.rooms[0].length,()=>({minLevel:1,maxLevel:1,npcRatio:0,bossRooms:0,treasureRatio:0,voidRatio:1}))
+    map.rooms = json.rooms.map((row:any)=>row.map((room:any)=>room ? MapRoom.fromJSON(room) : null))
+    map.startingRoom = json.startingRoom
+    map.biome = json.biome
+    return map
   }
 }
