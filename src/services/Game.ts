@@ -14,6 +14,7 @@ export class Game {
   public entities: { name: string; label: string }[] = [];
   public biome: string;
   public randomU = random.uniformInt(1, 577);
+  public ended : 'die'|'win'|false = false
 
   constructor(biome: string, minLevel: number, maxLevel: number, fromJSON?: boolean, fromJSONMap?: Map, fromJSONPos?: number) {
     if (fromJSON && fromJSONMap && fromJSONPos) {
@@ -22,6 +23,7 @@ export class Game {
       this._pos = fromJSONPos;
       return;
     }
+    console.log('inside')
     this.map = new Map(
       `${biome}-${Date.now().toString()}`,
       biome,
@@ -32,18 +34,19 @@ export class Game {
           minLevel: minLevel,
           maxLevel: maxLevel,
           bossRooms: 1,
-          npcRatio: (x * y) / 7,
-          treasureRatio: (x * y) / 9,
-          voidRatio: (x * y) / 5,
+          npcRatio: 1 / 7,
+          treasureRatio: 1 / 9,
+          voidRatio: 1 / 5,
         };
       }
     );
+    console.log('inside2')
     this._pos = 0;
     this.biome = biome;
   }
 
   public async generateEntities() {
-    if (this.entities) return;
+    if (this.entities && this.entities.length) return;
     const entities = await EntitiesService.generateEntities(this.biome, 15);
     this.entities = (await EntitiesService.classifyEntities(entities)).map(
       (e) => ({
@@ -135,7 +138,10 @@ export class Game {
         character.m_xp(diceResult * 4)
         if(room.roomType === RoomType.BOSS){
           win = true
+          this.ended = 'win'
         }
+      }else{
+        this.ended = 'die'
       }
       return {
         diceResult,
@@ -221,14 +227,17 @@ export class Game {
       _pos: this._pos,
       x: this.x,
       y: this.y,
-      biome: this.biome
+      biome: this.biome,
+      ended: this.ended
     }
   }
 
   public static fromJSON(json: any){
+    console.log('g_fjson')
     const map = Map.fromJSON(json.map)
     const game = new Game(json.biome,0,0,true, map, json._pos)
     game.entities = json.entities
+    game.ended = json.ended
     return game
   }
 }

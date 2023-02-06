@@ -8,11 +8,11 @@ export type Coordinate = {
 }
 
 export enum RoomType{
-  EMPTY,
-  HOSTILE,
-  NPC,
-  BOSS,
-  TREASURE
+  EMPTY = 'empty',
+  HOSTILE = 'hostile',
+  NPC = 'npc',
+  BOSS = 'boss',
+  TREASURE = 'treasure'
 }
 
 export class MapRoom{
@@ -95,7 +95,7 @@ export class Map{
     bossRooms: number;
     treasureRatio: number;
     voidRatio: number;
-  }){
+  }, fromJSON?: boolean){
     const uniform = rand.uniformInt(1,x*y)
     const bossUIntX = rand.uniformInt(Math.round(x/2),x)
     const bossUIntY = rand.uniformInt(Math.round(y/2),y)
@@ -103,6 +103,8 @@ export class Map{
     this.biome = biome
     this.startingRoom = {x:0,y:0}
     const dif = dificulty(x,y)
+
+    if(fromJSON) return
 
     const bossRooms = Array.from({ length: dif.bossRooms }, (v, i) => new MapRoom(RoomType.BOSS, dif.maxLevel, this.biome))
     const treasureRooms = Array.from({ length: Math.round(x*y*dif.treasureRatio) }, (v, i) => new MapRoom(RoomType.TREASURE, Math.round(Math.random() * (dif.maxLevel - dif.minLevel) + dif.minLevel), this.biome))
@@ -123,7 +125,8 @@ export class Map{
       }
     })
     const espRooms = [...treasureRooms, ...voidRooms, ...npcRooms]
-    espRooms.forEach(room => {
+    console.log('espRooms.length', espRooms.length)
+    espRooms.forEach((room,i) => {
       while(true){
         const pos = uniform()
         const x_c = pos%x
@@ -154,7 +157,7 @@ export class Map{
   }
 
   public static fromJSON(json:any){
-    const map = new Map(json.mapName,json.biome,json.rooms.length,json.rooms[0].length,()=>({minLevel:1,maxLevel:1,npcRatio:0,bossRooms:0,treasureRatio:0,voidRatio:1}))
+    const map = new Map(json.mapName,json.biome,json.rooms.length,json.rooms[0].length,()=>({minLevel:1,maxLevel:1,npcRatio:0,bossRooms:0,treasureRatio:0,voidRatio:0}))
     map.rooms = json.rooms.map((row:any)=>row.map((room:any)=>room ? MapRoom.fromJSON(room) : null))
     map.startingRoom = json.startingRoom
     map.biome = json.biome
