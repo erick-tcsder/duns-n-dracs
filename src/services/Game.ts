@@ -8,7 +8,7 @@ import classNames from "classnames";
 
 export class Game {
   public map: Map;
-  private _pos: number = 0;
+  public _pos: number = 0;
   public x: number = 5;
   public y: number = 7;
   public entities: { name: string; label: string }[] = [];
@@ -41,6 +41,9 @@ export class Game {
       );
       this._pos = 0;
       this.biome = biome;
+      if(this.map.rooms[0][0]){
+        this.map.rooms[0][0].visited = true
+      }
     }
   }
 
@@ -84,17 +87,25 @@ export class Game {
   }
 
   public async visitRoom(room: MapRoom, pos: number, character: string) {
+    let wasV = room.visited
+    if(!room) return wasV
     if (!room.visited) {
+      console.log('ee')
       const entitiesFiltered = this.entities
-        .filter((e) => e.label === MapRoom.getCardFromRoomType(room.roomType))
+        .filter((e) => e.label === (MapRoom.getCardFromRoomType(room.roomType) === RoomType.BOSS ? 'hostile': MapRoom.getCardFromRoomType(room.roomType)))
         .map((e) => e.name);
       await room.getStartingStory(
         character,
         entitiesFiltered[this.randomU() % entitiesFiltered.length]
       );
     }
+    console.log('vv')
     room.visited = true;
+    console.log('pos', pos)
+    this.map.rooms[pos % this.x][Math.floor(pos / this.x)] = room;
+    console.log(room)
     this._pos = pos;
+    return wasV
   }
 
   public throwDice() {

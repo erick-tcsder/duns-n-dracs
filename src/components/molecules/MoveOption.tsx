@@ -5,7 +5,8 @@ import { MapRoom, RoomType } from "../../services/Map"
 
 
 export interface MoveOptionProps {
-  mo?: MoveOptionType & {room: MapRoom|null}
+  mo?: MoveOptionType & {room: MapRoom|null};
+  onClick?: (mo?:MoveOptionType & {room: MapRoom|null})=>void;
 }
 
 export const roomColor : Record<RoomType,string> = {
@@ -34,7 +35,7 @@ export const roomIcon : Record<RoomType,string> = {
 
 export const MoveOption : React.FC<MoveOptionProps> = (props) => {
   return (
-    <div className={classNames("w-full relative bg-slate-700 border-2 border-slate-600 rounded-lg group p-5",{
+    <div onClick={()=>{props.onClick?.(props?.mo)}} className={classNames("w-full relative bg-slate-700 border-2 border-slate-600 rounded-lg group p-5",{
       "hover:cursor-pointer hover:shadow-lg": props.mo,
       [roomShadow[props?.mo?.room?.roomType ?? RoomType.EMPTY]]: props.mo,
       "opacity-20": !props.mo,
