@@ -96,9 +96,9 @@ export class Map{
     treasureRatio: number;
     voidRatio: number;
   }, fromJSON?: boolean){
-    const uniform = rand.uniformInt(1,x*y)
-    const bossUIntX = rand.uniformInt(Math.round(x/2),x)
-    const bossUIntY = rand.uniformInt(Math.round(y/2),y)
+    const uniform = rand.uniformInt(1,x*y-1)
+    const bossUIntX = rand.uniformInt(Math.round(x/2)-1,x-1)
+    const bossUIntY = rand.uniformInt(Math.round(y/2)-1,y-1)
     this.mapName = name
     this.biome = biome
     this.startingRoom = {x:0,y:0}
@@ -125,7 +125,6 @@ export class Map{
       }
     })
     const espRooms = [...treasureRooms, ...voidRooms, ...npcRooms]
-    console.log('espRooms.length', espRooms.length)
     espRooms.forEach((room,i) => {
       while(true){
         const pos = uniform()

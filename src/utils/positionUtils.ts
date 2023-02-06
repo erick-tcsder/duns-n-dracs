@@ -12,13 +12,13 @@ export const move = (
   direction: Direction
 ) => {
   switch (direction) {
-    case Direction.Down:
-      return position - x > 0 ? position - x : -1;
-    case Direction.Top:
-      return position + x < x * y ? position + x : -1;
     case Direction.Left:
-      return position - 1 > 0 && position % x > 0 ? position - 1 : -1;
+      return position - x > 0 ? position - x : -1;
     case Direction.Right:
+      return position + x < x * y ? position + x : -1;
+    case Direction.Down:
+      return position - 1 > 0 && position % x > 0 ? position - 1 : -1;
+    case Direction.Top:
       return position + 1 < x * y && position % x < x - 1 ? position + 1 : -1;
   }
 };

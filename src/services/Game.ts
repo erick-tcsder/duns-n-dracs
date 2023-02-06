@@ -17,32 +17,31 @@ export class Game {
   public ended : 'die'|'win'|false = false
 
   constructor(biome: string, minLevel: number, maxLevel: number, fromJSON?: boolean, fromJSONMap?: Map, fromJSONPos?: number) {
-    if (fromJSON && fromJSONMap && fromJSONPos) {
+    if (fromJSON && fromJSONMap && typeof fromJSONPos === 'number') {
       this.map = fromJSONMap;
       this.biome = biome;
       this._pos = fromJSONPos;
-      return;
+      return
+    }else{
+      this.map = new Map(
+        `${biome}-${Date.now().toString()}`,
+        biome,
+        this.x,
+        this.y,
+        (x, y) => {
+          return {
+            minLevel: minLevel,
+            maxLevel: maxLevel,
+            bossRooms: 1,
+            npcRatio: 1 / 7,
+            treasureRatio: 1 / 9,
+            voidRatio: 1 / 10,
+          };
+        }
+      );
+      this._pos = 0;
+      this.biome = biome;
     }
-    console.log('inside')
-    this.map = new Map(
-      `${biome}-${Date.now().toString()}`,
-      biome,
-      this.x,
-      this.y,
-      (x, y) => {
-        return {
-          minLevel: minLevel,
-          maxLevel: maxLevel,
-          bossRooms: 1,
-          npcRatio: 1 / 7,
-          treasureRatio: 1 / 9,
-          voidRatio: 1 / 5,
-        };
-      }
-    );
-    console.log('inside2')
-    this._pos = 0;
-    this.biome = biome;
   }
 
   public async generateEntities() {
@@ -233,7 +232,6 @@ export class Game {
   }
 
   public static fromJSON(json: any){
-    console.log('g_fjson')
     const map = Map.fromJSON(json.map)
     const game = new Game(json.biome,0,0,true, map, json._pos)
     game.entities = json.entities

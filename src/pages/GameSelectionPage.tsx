@@ -20,7 +20,6 @@ export const GameSelectionPage : React.FC = ()=>{
 
   useEffect(()=>{
     const game = getGame()
-    console.log('game',game)
     if(game && !game.ended){
       Swal.fire({
         title: "Warning",

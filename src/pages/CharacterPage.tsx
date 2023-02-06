@@ -22,7 +22,6 @@ export const CharacterPage : React.FC = () => {
   },[])
 
   useEffect(()=>{
-    console.log('as')
     window.localStorage.setItem('character',JSON.stringify(Character.ToJSON(character?? new Character(0,'',0))))
   },[character])
 

@@ -1,3 +1,4 @@
+import { Character } from "../services/Character"
 import { Game } from "../services/Game"
 
 export const getUnlocks = () => {
@@ -17,4 +18,14 @@ export const getGame = () => {
   const game = localStorage.getItem('game')
   if(!game) return null
   return Game.fromJSON(JSON.parse(game))
+}
+
+export const setCharacter = (ch:Character)=>{
+  localStorage.setItem('character', JSON.stringify(Character.ToJSON(ch)))
+}
+
+export const getCharacter = ()=>{
+  const ch = localStorage.getItem('character')
+  if(!ch) return null
+  return Character.FromJSON(JSON.parse(ch))
 }
