@@ -14,7 +14,7 @@ export const GamePageHud : React.FC<GamePageHudProps> = (props)=>{
     <div className="m-3">
       <CharacterStatics showHP showXp character={props.character ?? undefined}/>
     </div>
-    <div className="bg-gray-900 p-3 border-gray-500 border-2 flex flex-col-reverse gap-y-3 m-3 rounded-md self-end">
+    <div className="bg-gray-900 p-3 border-gray-500 border-2 flex flex-col-reverse gap-y-3 m-5 rounded-md self-end">
       {props.game.map.rooms.map((row,x)=>(
         <div key={x} className="flex gap-x-3">
           {row.map((room, y)=>{

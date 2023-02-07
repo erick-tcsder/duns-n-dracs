@@ -44,7 +44,6 @@ export const GamePage : React.FC = ()=>{
     if(!localGame || !localCharacter || !mo || !mo.room) return
     setLoading(true)
     const wasVisited = await localGame.visitRoom(mo.room, mo.pos, localCharacter.name)
-    console.log(localGame)
     setGame(localGame)
     setLocalGame(getGame())
     if(!wasVisited){

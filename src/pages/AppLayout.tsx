@@ -14,6 +14,7 @@ function AppLayout() {
       <div className="absolute inset-0 p-3 py-2">
         <Outlet/>
       </div>
+      <span className="fixed bottom-0 right-0 text-xs text-gray-100 opacity-50 hover:opacity-100">My Personal Portfolio <a href="https://erickfons.me" target="_blank" className="text-sky-400">erickfons.me</a></span>
     </div>
   )
 }
