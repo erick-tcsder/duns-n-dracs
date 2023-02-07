@@ -57,11 +57,5 @@ export const GameSelectionPage : React.FC = ()=>{
         <StageCard key={biome.name} {...biome} stage={biome.name} locked={!Boolean(unlocksLocal?.includes(biome.name))} onClick={()=>{handleStartAGameAndPushToPage(biome)}}/>
       ))}
     </div>
-    <div className="fixed bottom-0 left-0">
-      <button onClick={()=>{
-        setUnlocks(biomes.map(b=>b.name))
-        setUnlocksLocal(biomes.map(b=>b.name))
-      }}>dev</button>
-    </div>
   </div>
 }

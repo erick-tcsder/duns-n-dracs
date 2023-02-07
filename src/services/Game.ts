@@ -90,7 +90,6 @@ export class Game {
     let wasV = room.visited
     if(!room) return wasV
     if (!room.visited) {
-      console.log('ee')
       const entitiesFiltered = this.entities
         .filter((e) => e.label === (MapRoom.getCardFromRoomType(room.roomType) === RoomType.BOSS ? 'hostile': MapRoom.getCardFromRoomType(room.roomType)))
         .map((e) => e.name);
@@ -99,11 +98,8 @@ export class Game {
         entitiesFiltered[this.randomU() % entitiesFiltered.length]
       );
     }
-    console.log('vv')
     room.visited = true;
-    console.log('pos', pos)
     this.map.rooms[pos % this.x][Math.floor(pos / this.x)] = room;
-    console.log(room)
     this._pos = pos;
     return wasV
   }
