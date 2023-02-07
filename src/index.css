@@ -13,6 +13,10 @@
   src: local('Cubano'), url('%PUBLIC_URL%/fonts/Cubano.ttf') format('ttf');
 }
 
+.font-cubano{
+  font-family: 'Cubano', cursive;
+}
+
 *{
   box-sizing: border-box;
 }
