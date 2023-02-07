@@ -34,14 +34,22 @@
   -webkit-text-size-adjust: 100%;
 }
 
-.simple-scroller{
-  overflow-x: hidden;
-  overflow-y: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+::-webkit-scrollbar {
+  width: 10px;
 }
-.simple-scroller::-webkit-scrollbar {
-  display: none;
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #a5aec2;
+  border-radius: 999px; 
+}
+
+.simple-scrollbar{
+  scrollbar-color: #a5aec2;
+  scrollbar-width: thin;
 }
