@@ -53,7 +53,7 @@ export class Character{
   }
 
   public m_hp(amount:number):{dead: boolean}{
-    if(amount < 0 && this.currentHP < amount){
+    if(amount < 0 && this.currentHP < Math.abs(amount)){
       this.currentHP = 0
       return {dead: true}
     }

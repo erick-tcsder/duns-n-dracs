@@ -10,7 +10,7 @@ export const GamePageHeader = ()=>{
           navigate('/init')
         }} className="px-3 py-1 rounded-sm ring-offset-4 ring-offset-gray-800 bg-sky-500 text-white hover:ring-2 hover:ring-sky-500 font-cubano text-lg">HOME</button>
         <button onClick={()=>{
-          navigate('/init')
+          navigate('/game-selection')
         }} className="px-3 py-1 rounded-sm ring-offset-4 ring-offset-gray-800 bg-orange-400 text-white hover:ring-2 hover:ring-orange-400 font-cubano text-lg">Exit Dungeon</button>
       </div>
     </header>

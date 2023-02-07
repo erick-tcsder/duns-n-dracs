@@ -12,7 +12,7 @@ export interface GamePageHudProps {
 export const GamePageHud : React.FC<GamePageHudProps> = (props)=>{
   return <div className="fixed bottom-0 inset-x-0 flex justify-between">
     <div className="m-3">
-      <CharacterStatics character={props.character ?? undefined}/>
+      <CharacterStatics showHP showXp character={props.character ?? undefined}/>
     </div>
     <div className="bg-gray-900 p-3 border-gray-500 border-2 flex flex-col-reverse gap-y-3 m-3 rounded-md self-end">
       {props.game.map.rooms.map((row,x)=>(

@@ -9,6 +9,9 @@ import { GamePageHud } from "../components/organisms/GamePageHud"
 import { MoveOption, MoveOptionProps } from "../components/molecules/MoveOption"
 import { Direction, MoveOptionType } from "../utils/positionUtils"
 import { MapRoom } from "../services/Map"
+import { DiceLockGame } from "../components/organisms/DiceLockGame"
+import characterURL from '../pictures/character.png'
+import characterFemURL from '../pictures/character_fem.png'
 
 export const GamePage : React.FC = ()=>{
   const navigate = useNavigate()
@@ -52,6 +55,32 @@ export const GamePage : React.FC = ()=>{
   },[])
 
   return <div>
+    <div className="fixed inset-0 top-16 bottom-0 grid content-end justify-start">
+      <div className="relative" style={{transform: 'scaleX(-1)',WebkitTransform: 'scaleX(-1)'}}>
+        {localCharacter?.gender === 'MALE' && (
+          <>
+            <div className="absolute animate-pulse bottom-0 right-8 w-48 h-48 bg-orange-500 opacity-80 blur-2xl"></div>
+            <div className="absolute animate-pulse bottom-5 right-12 w-32 h-32 bg-yellow-400 opacity-80 blur-2xl"></div>
+
+            <div className="absolute animate-pulse bottom-12 left-0 w-48 h-48 bg-orange-500 opacity-80 blur-2xl"></div>
+            <div className="absolute animate-pulse bottom-16 left-8 w-32 h-32 bg-yellow-400 opacity-80 blur-2xl"></div>
+            
+            <img src={characterURL} className="relative"/>
+          </>
+        )}
+        {localCharacter?.gender === 'FEMALE' && (
+          <>
+            <div className="absolute animate-pulse top-24 right-24 w-32 h-32 bg-gray-100 opacity-50 blur-2xl"></div>
+            <div className="absolute animate-pulse top-28 right-28 w-24 h-24 bg-gray-100 opacity-50 blur-2xl"></div>
+
+            <div className="absolute animate-pulse bottom-0 left-28 w-32 h-32 bg-orange-200 opacity-50 blur-2xl"></div>
+            <div className="absolute animate-pulse bottom-0 left-28 w-32 h-32 bg-orange-200 opacity-50 blur-2xl"></div>
+            
+            <img src={characterFemURL} className="relative"/>
+          </>
+        )}
+      </div>
+    </div>
     <GamePageHeader/>
     {localGame && localCharacter && (
       <GamePageHud character={localCharacter} game={localGame}/>
@@ -83,8 +112,8 @@ export const GamePage : React.FC = ()=>{
               </div>
             </div>
           )}
-          {diceLock && (
-            <div>dl</div>
+          {diceLock && localCharacter && localGame && (
+            <DiceLockGame setLocalCharacter={setLocalCharacter} setLocalGame={setLocalGame} character={localCharacter} game={localGame} setDiceLock={setDiceLock} setSteppingLock={setSteppingLock}/>
           )}
         </>
       )}

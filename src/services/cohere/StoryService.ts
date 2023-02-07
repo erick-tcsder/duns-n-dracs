@@ -35,7 +35,7 @@ Story:
       temperature: 1
     })
 
-    return generations[0].text;
+    return generations[0].text.replaceAll('--','').split('...')[0] + '...';
   }
 
   static async generateStoryEnding(historyStart:string, diceResult: string,character:string){
