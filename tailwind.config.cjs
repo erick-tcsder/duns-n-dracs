@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        cubano: ['Cubano', 'cursive'],
+        cubano: ['"Cubano"', 'cursive'],
         poppins: ['Poppins', 'sans-serif']
       },
       backgroundImage: {

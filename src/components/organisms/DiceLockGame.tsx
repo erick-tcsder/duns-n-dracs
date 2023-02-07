@@ -72,7 +72,7 @@ export const DiceLockGame : React.FC<DiceLockGameProps> = (props)=>{
     setLoading(false)
   },[props])
 
-  return <div className="max-w-3xl mx-24 w-full h-full flex flex-col bg-gray-700 bg-opacity-25 backdrop-blur-sm border-2 rounded-lg px-8 py-5">
+  return <div className="max-w-3xl mx-24 w-full h-full flex flex-col bg-gray-700 bg-opacity-25 backdrop-blur-sm border-2 rounded-lg px-8 py-5 overflow-auto simple-scroller">
     <span className="text-2xl font-cubano mb-3 inline-flex text-sky-400">Dungeon Master:</span>
     <p className="text-lg opacity-60">{currentRoom?.startingStory}</p>
     {loading ? (
