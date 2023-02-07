@@ -7,7 +7,7 @@
   },
   {
     "name": "Dusty Desert",
-    "description": "A mysterious desert full of secrets. Somthing is watching you...",
+    "description": "A mysterious desert full of secrets. Something is watching you...",
     "image": "dusty-desert",
     "levels": [20,39]
   },
@@ -19,13 +19,13 @@
   },
   {
     "name": "The Badlands",
-    "description": "A wasted land populated by agressive creatures once considered humans. Did you hear that???",
+    "description": "A wasted land populated by aggressive creatures once considered humans. Did you hear that???",
     "image": "the-badlands",
     "levels": [60,79]
   },
   {
     "name": "Void Citadel",
-    "description": "There's definatly something wrong with this place. Can you feel it???",
+    "description": "There's definitely something wrong with this place. Can you feel it???",
     "image": "void-citadel",
     "levels": [80,99]
   }
