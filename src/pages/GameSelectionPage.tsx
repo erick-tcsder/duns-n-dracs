@@ -39,9 +39,11 @@ export const GameSelectionPage : React.FC = ()=>{
   },[])
 
   const handleStartAGameAndPushToPage = useCallback(async (biome:BiomeJSONType)=>{
+    Swal.showLoading()
     const newGame = new Game(biome.name,biome.levels[0],biome.levels[1])
     await newGame.generateEntities()
     setGame(newGame)
+    Swal.close()
     navigate('/duns-n-dracs')
   },[])
   
