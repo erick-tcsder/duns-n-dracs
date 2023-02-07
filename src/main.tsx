@@ -13,6 +13,7 @@ import { RedirectionPage } from './pages/RedirectionPage'
 import { GameSelectionPage } from './pages/GameSelectionPage'
 import { GamePage } from './pages/GamePage'
 import { ErrorPage } from './pages/ErrorPage'
+import './fonts/Cubano.ttf';
 
 
 const router = createBrowserRouter([
