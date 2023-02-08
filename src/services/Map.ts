@@ -88,7 +88,7 @@ export class Map{
   public mapName: string = ''
   public startingRoom: Coordinate = {x:0,y:0}
   public biome:string = ''
-  constructor(name:string, biome:string, x:number, y:number, dificulty: (x:number,y:number)=>{
+  constructor(name:string, biome:string, x:number, y:number, difficulty: (x:number,y:number)=>{
     minLevel: number;
     maxLevel: number;
     npcRatio: number;
@@ -102,7 +102,7 @@ export class Map{
     this.mapName = name
     this.biome = biome
     this.startingRoom = {x:0,y:0}
-    const dif = dificulty(x,y)
+    const dif = difficulty(x,y)
 
     if(fromJSON) return
 

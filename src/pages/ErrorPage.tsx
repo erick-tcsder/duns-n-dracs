@@ -11,7 +11,7 @@ export const ErrorPage : React.FC = ()=>{
             404
           </h1>
           <span>
-            Somthing went wrong ... please go back to <Link to={'/init'} className="font-bold text-sky-400">home</Link>
+            Something went wrong ... please go back to <Link to={'/init'} className="font-bold text-sky-400">home</Link>
           </span>
         </div>
       </div>

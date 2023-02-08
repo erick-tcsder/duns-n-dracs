@@ -47,14 +47,14 @@ export interface LandscapeImageProps {
   stage: string;
   classname?: string;
   portrait?: boolean;
-  backBlured?: boolean;
+  backBlurred?: boolean;
   locked?: boolean
 }
 
 export const LandscapeImage : React.FC<LandscapeImageProps> = (props)=>{
   return (
     <div className={props.classname ?? '' +'relative'}>
-      {props.backBlured && !props.locked && (
+      {props.backBlurred && !props.locked && (
         <img src={(props.portrait ? urlMappedPortrait : urlMapped)[props.stage] ?? ''} alt={props.stage} className="absolute inset-0 -bottom-24 top-24 blur-3xl object-cover"/>
       )}
       <img src={(props.portrait ? urlMappedPortrait : urlMapped)[props.stage] ?? ''} alt={props.stage} className="relative object-cover"/>

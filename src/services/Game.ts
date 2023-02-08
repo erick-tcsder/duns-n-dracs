@@ -182,11 +182,11 @@ export class Game {
           obj: "gold",
         },
         {
-          text: "train to enhace the attack",
+          text: "train to enhance the attack",
           obj: "atk",
         },
         {
-          text: "train to enhace the defense",
+          text: "train to enhance the defense",
           obj: "def",
         },
         {

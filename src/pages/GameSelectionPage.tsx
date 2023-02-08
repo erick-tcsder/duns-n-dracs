@@ -26,7 +26,7 @@ export const GameSelectionPage : React.FC = ()=>{
         text: 'There exists a current game that will be overwritten if you start a new dungeon',
         showCancelButton: true,
         cancelButtonText: 'Lets finish it!',
-        confirmButtonText: 'I dont really mind ...'
+        confirmButtonText: 'I don`t really mind ...'
       }).then(({value})=>{
         if(value){
           game.ended = 'die'

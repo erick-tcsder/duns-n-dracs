@@ -12,7 +12,7 @@ export interface StageCardProps {
 export const StageCard : React.FC<StageCardProps> = (props)=>{
   return (
     <div className="flex flex-col relative overflow-hidden rounded-2xl border-4 border-gray-700 bg-gray-800">
-      <LandscapeImage stage={props.image} portrait backBlured locked={props.locked}/>
+      <LandscapeImage stage={props.image} portrait backBlurred locked={props.locked}/>
       <div className="relative font-cubano text-3xl flex flex-col h-full pb-3 mt-3">
         <div className="flex justify-center">
           {!props.locked ? props.stage : 'The unknown'}
