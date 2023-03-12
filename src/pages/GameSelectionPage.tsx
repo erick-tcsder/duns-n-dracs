@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import biomes from "../services/data/biomes.json"
 import { StageCard } from "../components/organisms/StageCard"
 import { useCallback, useEffect, useState } from "react"
-import { getGame, getUnlocks, setGame, setUnlocks } from "../utils/localStorageUtils"
+import { getDeveloperMode, getGame, getUnlocks, setGame, setUnlocks } from "../utils/localStorageUtils"
 import Swal from "sweetalert2"
 import { Game } from "../services/Game"
 
@@ -16,6 +16,7 @@ type BiomeJSONType = {
 
 export const GameSelectionPage : React.FC = ()=>{
   const navigate = useNavigate()
+  const devMode = getDeveloperMode()
   const [unlocksLocal, setUnlocksLocal] = useState<string[]>(getUnlocks())
 
   useEffect(()=>{
@@ -56,7 +57,7 @@ export const GameSelectionPage : React.FC = ()=>{
     </header>
     <div className="grid grid-cols-5 fixed top-32 inset-12 bottom-24 gap-12">
       {(biomes as BiomeJSONType[]).map((biome)=>(
-        <StageCard key={biome.name} {...biome} stage={biome.name} locked={!Boolean(unlocksLocal?.includes(biome.name))} onClick={()=>{handleStartAGameAndPushToPage(biome)}}/>
+        <StageCard key={biome.name} {...biome} stage={biome.name} locked={!devMode && !Boolean(unlocksLocal?.includes(biome.name))} onClick={()=>{handleStartAGameAndPushToPage(biome)}}/>
       ))}
     </div>
   </div>

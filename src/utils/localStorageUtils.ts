@@ -29,3 +29,13 @@ export const getCharacter = ()=>{
   if(!ch) return null
   return Character.FromJSON(JSON.parse(ch))
 }
+
+export const getDeveloperMode = ()=>{
+  const dev = localStorage.getItem('developerMode')
+  if(!dev) return false
+  return dev === 'true'
+}
+
+export const setDeveloperMode = (dev:boolean)=>{
+  localStorage.setItem('developerMode', dev.toString())
+}
